@@ -31,6 +31,9 @@ public class Transfer {
     @Column(nullable = false)
     private BigDecimal feeAmount;
 
+    @Column(nullable = false)
+    private OffsetDateTime scheduledAt;
+
     @CreatedBy
     private UUID createdByUserId;
 
@@ -46,18 +49,20 @@ public class Transfer {
     public Transfer() {
     }
 
-    public Transfer(UUID id, String beneficiary, BigDecimal amount, BigDecimal feeAmount) {
+    public Transfer(UUID id, String beneficiary, BigDecimal amount, BigDecimal feeAmount, OffsetDateTime scheduledAt) {
         this.id = id;
         this.beneficiary = beneficiary;
         this.amount = amount;
         this.feeAmount = feeAmount;
+        this.scheduledAt = scheduledAt;
     }
 
-    public Transfer(UUID id, String beneficiary, BigDecimal amount, BigDecimal feeAmount, UUID createdByUserId, OffsetDateTime createdAt, UUID lastModifiedByUserId, OffsetDateTime lastModifiedAt) {
+    public Transfer(UUID id, String beneficiary, BigDecimal amount, BigDecimal feeAmount, OffsetDateTime scheduledAt, UUID createdByUserId, OffsetDateTime createdAt, UUID lastModifiedByUserId, OffsetDateTime lastModifiedAt) {
         this.id = id;
         this.beneficiary = beneficiary;
         this.amount = amount;
         this.feeAmount = feeAmount;
+        this.scheduledAt = scheduledAt;
         this.createdByUserId = createdByUserId;
         this.createdAt = createdAt;
         this.lastModifiedByUserId = lastModifiedByUserId;
@@ -77,7 +82,6 @@ public class Transfer {
     }
 
     public void setBeneficiary(String beneficiary) {
-        Objects.requireNonNull(beneficiary);
         this.beneficiary = beneficiary;
     }
 
@@ -86,7 +90,6 @@ public class Transfer {
     }
 
     public void setAmount(BigDecimal amount) {
-        Objects.requireNonNull(amount);
         this.amount = amount;
     }
 
@@ -95,8 +98,15 @@ public class Transfer {
     }
 
     public void setFeeAmount(BigDecimal feeAmount) {
-        Objects.requireNonNull(amount);
         this.feeAmount = feeAmount;
+    }
+
+    public OffsetDateTime getScheduledAt() {
+        return scheduledAt;
+    }
+
+    public void setScheduledAt(OffsetDateTime scheduledAt) {
+        this.scheduledAt = scheduledAt;
     }
 
     public UUID getCreatedByUserId() {
@@ -150,6 +160,7 @@ public class Transfer {
                 ", beneficiary='" + beneficiary + '\'' +
                 ", amount=" + amount +
                 ", feeAmount=" + feeAmount +
+                ", scheduledAt=" + scheduledAt +
                 ", createdByUserId=" + createdByUserId +
                 ", createdAt=" + createdAt +
                 ", lastModifiedByUserId=" + lastModifiedByUserId +
@@ -166,6 +177,7 @@ public class Transfer {
         private String beneficiary;
         private BigDecimal amount;
         private BigDecimal feeAmount;
+        private OffsetDateTime scheduledAt;
 
         public Builder id(UUID id) {
             this.id = id;
@@ -187,8 +199,13 @@ public class Transfer {
             return this;
         }
 
+        public Builder scheduledAt(OffsetDateTime scheduledAt) {
+            this.scheduledAt = scheduledAt;
+            return this;
+        }
+
         public Transfer build() {
-            return new Transfer(id, beneficiary, amount, feeAmount);
+            return new Transfer(id, beneficiary, amount, feeAmount, scheduledAt);
         }
 
         @Override
@@ -198,6 +215,7 @@ public class Transfer {
                     ", beneficiary='" + beneficiary + '\'' +
                     ", amount=" + amount +
                     ", feeAmount=" + feeAmount +
+                    ", scheduledAt=" + scheduledAt +
                     '}';
         }
     }
