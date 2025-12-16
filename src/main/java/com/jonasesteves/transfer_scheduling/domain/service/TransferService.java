@@ -62,8 +62,7 @@ public class TransferService {
     }
 
     public TransferOutput update(UUID id, TransferInput transferInput) {
-        Transfer existingTransfer = repository.findById(id)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+        Transfer existingTransfer = findTransferOrThrow(id);
 
         validateScheduledAt(transferInput.getScheduledAt());
         validateTransferAmount(transferInput.getAmount());
@@ -85,8 +84,7 @@ public class TransferService {
     }
 
     public TransferOutput findById(UUID id) {
-        Transfer transfer = repository.findById(id)
-                .orElseThrow(() -> new TransferNotFoundException(id));
+        Transfer transfer = findTransferOrThrow(id);
         return assembler.toTransferOutput(transfer);
     }
 
@@ -156,5 +154,10 @@ public class TransferService {
 
     private static BigDecimal roundToTwoDecimalPlaces(BigDecimal value) {
         return value.setScale(2, RoundingMode.HALF_EVEN);
+    }
+
+    private Transfer findTransferOrThrow(UUID id) {
+        return repository.findById(id)
+                .orElseThrow(() -> new TransferNotFoundException(id));
     }
 }

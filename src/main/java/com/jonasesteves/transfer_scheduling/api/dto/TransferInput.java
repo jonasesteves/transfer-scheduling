@@ -1,5 +1,6 @@
 package com.jonasesteves.transfer_scheduling.api.dto;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
@@ -8,12 +9,15 @@ import java.time.OffsetDateTime;
 
 public class TransferInput {
 
+    @Schema(example = "PT501234", description = "Beneficiary account identifier")
     @NotBlank
     private String beneficiary;
 
+    @Schema(example = "1500.75", description = "Amount to be transferred", minimum = "1.00")
     @NotNull
     private BigDecimal amount;
 
+    @Schema(example = "2024-12-31T15:30:00Z", description = "Scheduled date and time for the transfer. Cannot be in the past.")
     @NotNull
     private OffsetDateTime scheduledAt;
 

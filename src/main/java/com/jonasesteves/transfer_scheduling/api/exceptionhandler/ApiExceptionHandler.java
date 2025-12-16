@@ -24,7 +24,7 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
     protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatusCode status, WebRequest request) {
         ProblemDetail problemDetail = ProblemDetail.forStatus(HttpStatus.BAD_REQUEST);
         problemDetail.setTitle("Bad request");
-        problemDetail.setDetail("One or more arguments are invalid.");
+        problemDetail.setDetail("One or more arguments are missing or invalid.");
         problemDetail.setType(URI.create("/errors/bad-request"));
         return ResponseEntity.badRequest().body(problemDetail);
     }

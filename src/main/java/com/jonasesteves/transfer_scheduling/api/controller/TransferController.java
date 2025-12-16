@@ -2,12 +2,14 @@ package com.jonasesteves.transfer_scheduling.api.controller;
 
 import com.jonasesteves.transfer_scheduling.api.dto.TransferInput;
 import com.jonasesteves.transfer_scheduling.api.dto.TransferOutput;
+import com.jonasesteves.transfer_scheduling.api.openapi.controller.TransferControllerDocs;
 import com.jonasesteves.transfer_scheduling.domain.service.TransferService;
 import jakarta.validation.Valid;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,8 +25,8 @@ import java.time.OffsetDateTime;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/api/transfers")
-public class TransferController {
+@RequestMapping(path = "/api/transfers", produces = MediaType.APPLICATION_JSON_VALUE)
+public class TransferController implements TransferControllerDocs {
 
     private final TransferService service;
 

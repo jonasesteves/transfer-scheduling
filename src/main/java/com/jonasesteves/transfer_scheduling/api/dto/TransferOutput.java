@@ -1,15 +1,26 @@
 package com.jonasesteves.transfer_scheduling.api.dto;
 
+import io.swagger.v3.oas.annotations.media.Schema;
+
 import java.math.BigDecimal;
 import java.time.OffsetDateTime;
 import java.util.UUID;
 
 public class TransferOutput {
 
+    @Schema(example = "3fa85f64-5717-4562-b3fc-2c963f66afa6", description = "Unique identifier of the transfer")
     private UUID id;
+
+    @Schema(example = "PT501234", description = "Beneficiary account identifier")
     private String beneficiary;
+
+    @Schema(example = "452.50", description = "Amount to be transferred")
     private BigDecimal amount;
+
+    @Schema(example = "40.72", description = "Fee amount for the transfer")
     private BigDecimal feeAmount;
+
+    @Schema(example = "2024-12-31T15:30:00Z", description = "Scheduled date and time for the transfer")
     private OffsetDateTime scheduledAt;
 
     public TransferOutput(UUID id, String beneficiary, BigDecimal amount, BigDecimal feeAmount, OffsetDateTime scheduledAt) {
