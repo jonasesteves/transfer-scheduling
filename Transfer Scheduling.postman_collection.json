@@ -1,0 +1,172 @@
+{
+	"info": {
+		"_postman_id": "08f7e8c6-3688-4f3d-b096-41bcaf892e9c",
+		"name": "Transfer Scheduling",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "14920260"
+	},
+	"item": [
+		{
+			"name": "Create",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"beneficiary\": \"PT501234\",\n    \"amount\": 2000,\n    \"scheduledAt\": \"2025-12-18T20:00:00Z\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/transfers",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"transfers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"beneficiary\": \"PT501234\",\n    \"amount\": 2250.00,\n    \"scheduledAt\": \"2025-12-29T20:00:00Z\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/transfers/019b21fd-af90-79c1-8388-7329ecd3c78e",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"transfers",
+						"019b21fd-af90-79c1-8388-7329ecd3c78e"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Find all",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/transfers",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"transfers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Find by date",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/transfers?begin=2025-12-11T10:00:00Z&end=2025-12-20T21:00:00Z",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"transfers"
+					],
+					"query": [
+						{
+							"key": "begin",
+							"value": "2025-12-11T10:00:00Z"
+						},
+						{
+							"key": "end",
+							"value": "2025-12-20T21:00:00Z"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"beneficiary\": \"PT501234\",\n    \"amount\": 10.508,\n    \"scheduledAt\": \"2025-12-16T20:00:00Z\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/transfers/019b21e4-d259-7bed-84e0-c9dd7a013523",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"transfers",
+						"019b21e4-d259-7bed-84e0-c9dd7a013523"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Find by id",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"beneficiary\": \"PT501234\",\n    \"amount\": 10.508,\n    \"scheduledAt\": \"2025-12-16T20:00:00Z\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/transfers/019b21e4-d259-7bed-84e0-c9dd7a013523",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"transfers",
+						"019b21e4-d259-7bed-84e0-c9dd7a013523"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
